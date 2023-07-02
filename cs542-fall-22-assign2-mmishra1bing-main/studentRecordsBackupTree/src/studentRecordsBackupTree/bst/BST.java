@@ -1,22 +1,26 @@
 
 package studentRecordsBackupTree.bst;
-import studentRecordsBackupTree.util.Results;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
 
 public class BST {
     private Node root;
-    private BufferedWriter bf;
 
+    
     public BST(){
         this.root=null;
     }
 
+    
     public void insert(int newData){
         this.root=insert(root, newData);
     }
 
+    /* Function to insert the B-number as nodes in the tree*/
+    /**
+     * @param rootIn takes in the root value
+     * @param newData takes the value to compare with root and assign either to right or left
+     * @return Bst with the values inserted in the nodes
+     */
     public Node insert(Node rootIn, int newData) {
         if (rootIn == null) {
             rootIn = new Node(newData);
@@ -29,23 +33,12 @@ public class BST {
         return rootIn;
     }
 
-    Results results = new Results();
-    /*public void inorderRecur(Node rootIn)  {
-        // return if the current node is empty
-        if (rootIn == null) {
-            return;
-        }
-        // Traverse the left subtree
-        inorderRecur(rootIn.getLeft());
+    /* Function to do Inorder Traversal(Sorting) the elements*/
 
-        // Display the data part of the root (or current node)
-        System.out.print(rootIn.getBNumber() + ",");
-        //results.displayToFile(rootIn);
-
-
-        // Traverse the right subtree
-        inorderRecur(rootIn.getRight());
-    }*/
+    /**
+     * @param rootIn
+     * @param stringBuilderIn
+     */
     public void inorderRecur(Node rootIn, StringBuilder stringBuilderIn)  {
         // return if the current node is empty
         if (rootIn == null) {
@@ -67,14 +60,35 @@ public class BST {
         return stringBuilderIn;
       }
 
-//    public void inorder() throws IOException {
-//        inorderRecur(root);
-//    }
+    /* Function to Update the Value in the Tree while traversing*/
+    public void updateRecur(Node rootIn, int updateValue){
+        if (rootIn == null) {
+            return;
+        }
 
-    /* Function to find sum
-   of all the elements*/
+        // Traverse the left subtree
+        updateRecur(rootIn.getLeft(), updateValue);
 
-    public int addBST(Node temp){
+        // updateNode using SetBNumber with updated value
+        rootIn.setBNumber(rootIn.getBNumber()+updateValue);
+        //notify all the observers
+        rootIn.notifyObserver();
+       
+        // Traverse the right subtree
+        updateRecur(rootIn.getRight(), updateValue);
+    }
+
+    public void updateMain(int updateValue){
+        updateRecur(root,updateValue);
+    }
+    
+
+    /* Function to find sum of all the elements*/
+    /**
+     * @param key
+     * @return the sum of all the nodes combined together
+     */
+    public int addBST(Node key){
         int sum=0, sumLeft=0, sumRight=0;
 
         //Check whether tree is empty
@@ -84,21 +98,25 @@ public class BST {
         }
         else {
             //Calculate the sum of nodes present in left subtree
-            if(temp.getLeft() != null)
-                sumLeft = addBST(temp.getLeft());
+            if(key.getLeft() != null)
+                sumLeft = addBST(key.getLeft());
 
             //Calculate the sum of nodes present in right subtree
-            if(temp.getRight()!= null)
-                sumRight = addBST(temp.getRight());
+            if(key.getRight()!= null)
+                sumRight = addBST(key.getRight());
 
             //Calculate the sum of all nodes by adding sumLeft, sumRight and root node's data
-            sum = temp.getBNumber() + sumLeft + sumRight;
+            sum = key.getBNumber() + sumLeft + sumRight;
             return sum;
         }
     }
+
+
+    /**
+     * @return root
+     */
     public Node getRoot() {
         return root;
     }
-
 
 }

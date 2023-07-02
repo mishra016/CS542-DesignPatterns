@@ -25,17 +25,17 @@ public class Driver {
 			System.exit(0);
 		}
 		else {
-
+			
 			//System.out.println("Hello World! Lets get started with the assignment")
-
+					
 			String pathToInput = args[0];
 			String pathToOutput = args[1];
-			String pathToErrorLogger = args[2];
+			String pathToErrorLogger = args[2];	
 			String DEBUG_LEVEL = args[3];
 			int debugVal = Integer.parseInt(DEBUG_LEVEL);
 			String UPDATE_VALUE = args[4];
 			int updateVal = Integer.parseInt(UPDATE_VALUE);
-
+			
 			BST tree1 = new BST();
 			BST tree2 = new BST();
 			BST tree3 = new BST();
@@ -53,7 +53,7 @@ public class Driver {
 				rp.writeToErrorLog("Could not Read from file");
 				e.printStackTrace();
 			}finally{
-
+				
 			}
 
 			System.out.println("// Inorder traversal");
@@ -85,14 +85,14 @@ public class Driver {
 			upSumOfMainTree = tree1.addBST(tree1.getRoot());
 			upSumOfBackup1 = tree2.addBST(tree1.getRoot());
 			upSumOfBackup2 = tree3.addBST(tree1.getRoot());
-
-			System.out.println("\n// Sum of all the B-Numbers after increment");
+			 
+            System.out.println("\n// Sum of all the B-Numbers after increment");
 			System.out.println("BST: " + tree1.addBST(tree1.getRoot()));
 			System.out.println("Backup-1: " + tree2.addBST(tree1.getRoot()));
-			System.out.println("Backup-2: " + tree3.addBST(tree1.getRoot()));
+            System.out.println("Backup-2: " + tree3.addBST(tree1.getRoot()));
 
 			rp.displayToFile(mainTree, backup1, backup2, sumOfMainTree, sumOfBackup1, sumOfBackup2, upSumOfMainTree, upSumOfBackup1, upSumOfBackup2);
-
+			
 		}
 	}
 }

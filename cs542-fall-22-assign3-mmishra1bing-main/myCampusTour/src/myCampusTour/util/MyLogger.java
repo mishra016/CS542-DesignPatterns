@@ -4,8 +4,7 @@ package myCampusTour.util;
 public class MyLogger{
 
     // FIXME: Add more enum values as needed for the assignment
-    public static enum DebugLevel {NONE, CONSTRUCTOR, FILE_PROCESSOR
-                                   };
+    public static enum DebugLevel {CONSTRUCTOR, RESULT, NONE};
 
     private static DebugLevel debugLevel;
 
@@ -14,7 +13,7 @@ public class MyLogger{
     public static void setDebugValue (int levelIn) {
 	switch (levelIn) {
 	case 2: debugLevel = DebugLevel.CONSTRUCTOR; break;
-	case 1: debugLevel = DebugLevel.FILE_PROCESSOR; break;
+	case 1: debugLevel = DebugLevel.RESULT; break;
 	default: debugLevel = DebugLevel.NONE; break;
 	}
     }

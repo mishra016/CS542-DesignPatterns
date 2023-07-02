@@ -1,266 +1,190 @@
 package myCampusTour.builderWorkshop;
-//import java.util.ArrayList;
 
-import myCampusTour.myTour.AttendLecture;
-import myCampusTour.myTour.PickGift;
-import myCampusTour.myTour.SelectCafe;
+import myCampusTour.activities.AttendLectureI;
+import myCampusTour.activities.LectureInClass;
+import myCampusTour.activities.LectureVideoStream;
+import myCampusTour.activities.SelectCafeI;
+import myCampusTour.activities.SelectInQueue;
+import myCampusTour.activities.SelectOnlineOrder;
+import myCampusTour.activities.PickGiftI;
+import myCampusTour.activities.PickEventCenter;
+import myCampusTour.activities.PickUnion;
+import myCampusTour.activities.VisitBuildingI;
+import myCampusTour.activities.VisitByBus;
+import myCampusTour.activities.VisitByFoot;
 import myCampusTour.myTour.TourEnums;
-import myCampusTour.myTour.VisitBuilding1;
+import myCampusTour.util.MyLogger;
+
 
 public class Tour extends TourBuilder{
 
-    private TourEnums building1;
-    private TourEnums building2;
-    private TourEnums giftPlace;
-    private TourEnums cafe;
-    private TourEnums lecture;
+    public TourEnums visitBuilding;
+    public TourEnums visitBuilding2;
+    public TourEnums pickGift;
+    public TourEnums cafe;
+    public TourEnums attendLecture;
 
-    // private int cost;
-    // private int duration;
-    // private int co2;
-    // private int effort;
+    private double cost;
+    private int duration;
+    private int co2;
+    private int efforts;
 
-    //ArrayList<Integer> arr = new ArrayList<>();
+    Result r = new Result();
     
-
-    public Tour(){
-
+    /**This is a constructor of class Tour
+     * @param visitBuilding sets the Enum for first building
+     * @param visitBuilding2 sets Enum for second building
+     * @param pickGift sets Enum for pickGift Activity
+     * @param cafe sets Enum for CafeLocation activity
+     * @param attendLecture sets Enum for Lecture
+     */
+    public Tour(TourEnums visitBuilding, TourEnums visitBuilding2, TourEnums pickGift, TourEnums cafe, TourEnums attendLecture){
+        MyLogger.writeMessage("Campus Tour Construction", MyLogger.DebugLevel.CONSTRUCTOR);  
+        this.visitBuilding = visitBuilding;
+        this.visitBuilding2 = visitBuilding2;
+        this.pickGift = pickGift;
+        this.cafe = cafe;
+        this.attendLecture = attendLecture;
     }
 
-    public Tour(TourEnums activity1, TourEnums activity2, TourEnums activity3, TourEnums activity4){
-        //for activity 1
-        //How to make the user visit two buildings in one activity
-        if(activity1 == TourEnums.WATSON_BUS || activity1 == TourEnums.WATSON_FOOT || 
-        activity1 == TourEnums.SOM_BUS ||activity1 == TourEnums.SOM_FOOT || 
-        activity1 == TourEnums.HARPUR_BUS || activity1 == TourEnums.HARPUR_FOOT){
-            setBuilding1(activity1);
-        }else if(activity1 == TourEnums.EVENTCENTER || activity1 == TourEnums.UNIVERSITYUNION){
-            setGiftPlace(activity1);
-        }else if(activity1 == TourEnums.CIW_QUEUE || activity1 == TourEnums.MOUNTAINVIEW_ONLINEORDER){
-            setCafe(activity1);
-        }else if(activity1 == TourEnums.CS542 || activity1 == TourEnums.CS540_VIDEOSTREAM){
-            setLecture(activity1);
-        }else{
-            System.out.println("Invalid Choice of Activity1");
-            System.exit(0);
-        }
-
-        //for activity 2
-        if(activity2 == TourEnums.WATSON_BUS || activity2 == TourEnums.WATSON_FOOT || 
-        activity2 == TourEnums.SOM_BUS ||activity2 == TourEnums.SOM_FOOT || 
-        activity2 == TourEnums.HARPUR_BUS || activity2 == TourEnums.HARPUR_FOOT){
-            setBuilding1(activity2);
-        }else if(activity2 == TourEnums.EVENTCENTER || activity2 == TourEnums.UNIVERSITYUNION){
-            setGiftPlace(activity2);
-        }else if(activity2 == TourEnums.CIW_QUEUE || activity2 == TourEnums.MOUNTAINVIEW_ONLINEORDER){
-            setCafe(activity2);
-        }else if(activity2 == TourEnums.CS542 || activity2 == TourEnums.CS540_VIDEOSTREAM){
-            setLecture(activity2);
-        }else{
-            System.out.println("Invalid Choice of Activity2");
-            System.exit(0);
-        }
-
-        //for activity 3
-        if(activity3 == TourEnums.WATSON_BUS || activity3 == TourEnums.WATSON_FOOT || 
-        activity3 == TourEnums.SOM_BUS ||activity3 == TourEnums.SOM_FOOT || 
-        activity3 == TourEnums.HARPUR_BUS || activity3 == TourEnums.HARPUR_FOOT){
-            setBuilding1(activity3);
-        }else if(activity3 == TourEnums.EVENTCENTER || activity3 == TourEnums.UNIVERSITYUNION){
-            setGiftPlace(activity3);
-        }else if(activity3 == TourEnums.CIW_QUEUE || activity3 == TourEnums.MOUNTAINVIEW_ONLINEORDER){
-            setCafe(activity3);
-        }else if(activity3 == TourEnums.CS542 || activity3 == TourEnums.CS540_VIDEOSTREAM){
-            setLecture(activity3);
-        }else{
-            System.out.println("Invalid Choice of Activity3");
-            System.exit(0);
-        }
-
-        //for activity 4
-        if(activity4 == TourEnums.WATSON_BUS || activity4 == TourEnums.WATSON_FOOT || 
-        activity4 == TourEnums.SOM_BUS ||activity4 == TourEnums.SOM_FOOT || 
-        activity4 == TourEnums.HARPUR_BUS || activity4 == TourEnums.HARPUR_FOOT){
-            setBuilding1(activity4);
-        }else if(activity4 == TourEnums.EVENTCENTER || activity4 == TourEnums.UNIVERSITYUNION){
-            setGiftPlace(activity4);
-        }else if(activity4 == TourEnums.CIW_QUEUE || activity4 == TourEnums.MOUNTAINVIEW_ONLINEORDER){
-            setCafe(activity4);
-        }else if(activity4 == TourEnums.CS542 || activity4 == TourEnums.CS540_VIDEOSTREAM){
-            setLecture(activity4);
-        }else{
-            System.out.println("Invalid Argument for Activity4");
-            System.exit(0);
-        }
-
-//         //for activity 5
-//         if(activity5 == TourEnums.WATSON_BUS || activity5 == TourEnums.WATSON_FOOT ||
-//         activity5 == TourEnums.SOM_BUS ||activity5 == TourEnums.SOM_FOOT ||
-//         activity5 == TourEnums.HARPUR_BUS || activity5 == TourEnums.HARPUR_FOOT){
-//             setBuilding1(activity5);
-//         }else if(activity5 == TourEnums.EVENTCENTER || activity5 == TourEnums.UNIVERSITYUNION){
-//             setGiftPlace(activity5);
-//         }else if(activity5 == TourEnums.CIW_QUEUE || activity5 == TourEnums.MOUNTAINVIEW_ONLINEORDER){
-//             setCafe(activity5);
-//         }else if(activity5 == TourEnums.CS542 || activity5 == TourEnums.CS540_VIDEOSTREAM){
-//             setLecture(activity5);
-//         }else{
-//             System.out.println("Invalid Argument for Activity5");
-//             System.exit(0);
-//         }
-    }
-
+    /* 
+     * This Method is called when the user selects his/her BuildingVisit choice
+     */
     @Override
-    public void visitBuilding1() {
-        System.out.print("Building1: ");
-        //Results.builder.append("Building1:");
-        if(TourEnums.WATSON_BUS == building1){
-            System.out.print("WATSON BY BUS\n");
-            //Results.builder.append("WATSON BY BUS\n");
-        }else if(TourEnums.WATSON_FOOT == building1){
-            System.out.print("WATSON ON FOOT\n");
-            //Results.builder.append("WATSON ON FOOT\n");
-        }else if(TourEnums.SOM_BUS == building1){
-           System.out.print("SOM BY BUS\n");
-           // Results.builder.append("SOM BY BUS\n");
-        }else if(TourEnums.SOM_FOOT == building1){
-            System.out.print("SOM ON FOOT\n");
-            //Results.builder.append("SOM ON FOOT\n");
-        }else if(TourEnums.HARPUR_BUS == building1){
-            System.out.print("HARPUR BY BUS\n");
-           // Results.builder.append("HARPUR BY BUS\n");
-        }else if(TourEnums.HARPUR_FOOT == building1){
-            System.out.print("HARPUR ON FOOT\n");
-            //Results.builder.append("HARPUR ON FOOT\n");
+    public void visitBuilding() {
+        VisitBuildingI visitBuildingI;
+        if(visitBuilding == TourEnums.WATSON_BUS || visitBuilding == TourEnums.SOM_BUS ||visitBuilding == TourEnums.HARPUR_BUS){
+            visitBuildingI = new VisitByBus();
+            cost = visitBuildingI.totalCost();
+            duration = visitBuildingI.durationOfActivity();
+            co2 = visitBuildingI.CarbonFootprintUsed();
+            efforts = visitBuildingI.totalEfforts();
+            r.storeResult(cost, duration, co2, efforts);
+
+        }else if(visitBuilding == TourEnums.WATSON_FOOT|| visitBuilding == TourEnums.SOM_FOOT|| visitBuilding == TourEnums.HARPUR_FOOT){
+            visitBuildingI = new VisitByFoot();
+            cost = visitBuildingI.totalCost();
+            duration = visitBuildingI.durationOfActivity();
+            co2 = visitBuildingI.CarbonFootprintUsed();
+            efforts = visitBuildingI.totalEfforts();
+            r.storeResult(cost, duration, co2, efforts);
         }
+       if(visitBuilding2 == TourEnums.WATSON_BUS || visitBuilding2 == TourEnums.SOM_BUS ||visitBuilding2 == TourEnums.HARPUR_BUS){
+           visitBuildingI = new VisitByBus();
+           cost = visitBuildingI.totalCost();
+           duration = visitBuildingI.durationOfActivity();
+           co2 = visitBuildingI.CarbonFootprintUsed();
+           efforts = visitBuildingI.totalEfforts();
+           r.storeResult(cost, duration, co2, efforts);
 
-        VisitBuilding1 build1 = new VisitBuilding1();
-        build1.totalCost(building1);
-        build1.durationOfActivity(building1);
-        build1.CarbonFootprintUsed(building1);
-        build1.totalEfforts(building1);
+       }else if(visitBuilding2 == TourEnums.WATSON_FOOT|| visitBuilding2 == TourEnums.SOM_FOOT|| visitBuilding2 == TourEnums.HARPUR_FOOT){
+           visitBuildingI = new VisitByFoot();
+           cost = visitBuildingI.totalCost();
+           duration = visitBuildingI.durationOfActivity();
+           co2 = visitBuildingI.CarbonFootprintUsed();
+           efforts = visitBuildingI.totalEfforts();
+           r.storeResult(cost, duration, co2, efforts);
+       }
 
-//        VisitBuilding1 build2 = new VisitBuilding1();
-//        build2.totalCost(building2);
-//        build2.durationOfActivity(building2);
-//        build2.CarbonFootprintUsed(building2);
-//        build2.totalEfforts(building2);
-        // arr.add;
-    
     }
 
-//    @Override
-//    public void visitBuilding2() {
-//            System.out.print("Building2: ");
-//            //Results.builder.append("Building1:");
-//            if(TourEnums.WATSON_BUS == building2){
-//                System.out.print("WATSON BY BUS\n");
-//                //Results.builder.append("WATSON BY BUS\n");
-//            }else if(TourEnums.WATSON_FOOT == building2){
-//                System.out.print("WATSON ON FOOT\n");
-//                //Results.builder.append("WATSON ON FOOT\n");
-//            }else if(TourEnums.SOM_BUS == building2){
-//               System.out.print("SOM BY BUS\n");
-//               // Results.builder.append("SOM BY BUS\n");
-//            }else if(TourEnums.SOM_FOOT == building2){
-//                System.out.print("SOM ON FOOT\n");
-//                //Results.builder.append("SOM ON FOOT\n");
-//            }else if(TourEnums.HARPUR_BUS == building2){
-//                System.out.print("HARPUR BY BUS\n");
-//               // Results.builder.append("HARPUR BY BUS\n");
-//            }else if(TourEnums.HARPUR_FOOT == building2){
-//                System.out.print("HARPUR ON FOOT\n");
-//                //Results.builder.append("HARPUR ON FOOT\n");
-//            }
-//
-//            VisitBuilding1 build2 = new VisitBuilding1();
-//            build2.totalCost(building2);
-//            build2.durationOfActivity(building2);
-//            build2.CarbonFootprintUsed(building2);
-//            build2.totalEfforts(building2);
-//        }
-//
-    
+
+    /* 
+     * This Method is called when the user selects his/her choice to pick gift Loaction
+     */
     @Override
     public void pickGift() {
-        System.out.print("Gift Loaction: ");
-            if(TourEnums.EVENTCENTER == giftPlace){
-                System.out.print("EVENT CENTER\n");
-            }else if(TourEnums.UNIVERSITYUNION == giftPlace){
-                System.out.print("UNIVERSITY UNION\n");
-            }
-    
-            PickGift giftP = new PickGift();
-            giftP.totalCost(giftPlace);
-            giftP.durationOfActivity(giftPlace);
-            giftP.CarbonFootprintUsed(giftPlace);
-            giftP.totalEfforts(giftPlace);
-        
+        double trialCost =  5;
+        PickGiftI pickGiftI;
+        if(pickGift == TourEnums.UNIVERSITYUNION){
+            pickGiftI = new PickUnion();
+            pickGiftI.setCost(trialCost);
+            cost = pickGiftI.totalCost();
+            duration = pickGiftI.durationOfActivity();
+            co2 = pickGiftI.CarbonFootprintUsed();
+            efforts = pickGiftI.totalEfforts();
+            r.storeResult(cost,duration, co2, efforts);
+
+        }else if(pickGift == TourEnums.EVENTCENTER){
+            trialCost = 4;
+            pickGiftI = new PickEventCenter();
+            pickGiftI.setCost(trialCost);
+            cost = pickGiftI.totalCost();
+            duration = pickGiftI.durationOfActivity();
+            co2 = pickGiftI.CarbonFootprintUsed();
+            efforts = pickGiftI.totalEfforts();
+            r.storeResult(cost, duration, co2, efforts);
+
+        }
+
     }
 
+    /* 
+     * This Method is called when the user selects his/her Cafeteria choic
+     */
     @Override
     public void selectCafe() {
-        System.out.print("Cafe Loaction: ");
-        if(TourEnums.CIW_QUEUE == cafe){
-            System.out.print("COLLEGE IN WOODS(CIW)\n");
-        }else if(TourEnums.MOUNTAINVIEW_ONLINEORDER == cafe){
-            System.out.print("MOUNTAIN VIEW\n");
+        double trialCost =  6;
+        SelectCafeI selectCafeI;
+        if(cafe == TourEnums.CIW_QUEUE){
+            selectCafeI = new SelectInQueue();
+            selectCafeI.setCost(trialCost);
+            cost = selectCafeI.totalCost();
+            duration = selectCafeI.durationOfActivity();
+            co2 = selectCafeI.CarbonFootprintUsed();
+            efforts = selectCafeI.totalEfforts();
+            r.storeResult(cost, duration, co2, efforts);
+
+        }else if(cafe == TourEnums.MOUNTAINVIEW_ONLINEORDER){
+            trialCost = 6.3;
+            selectCafeI = new SelectOnlineOrder();
+            selectCafeI.setCost(trialCost);
+            cost = selectCafeI.totalCost();
+            duration = selectCafeI.durationOfActivity();
+            co2 = selectCafeI.CarbonFootprintUsed();
+            efforts = selectCafeI.totalEfforts();
+            r.storeResult(cost, duration, co2, efforts);
         }
 
-        SelectCafe cafeteria = new SelectCafe();
-        cafeteria.totalCost(cafe);
-        cafeteria.durationOfActivity(cafe);
-        cafeteria.CarbonFootprintUsed(cafe);
-        cafeteria.totalEfforts(cafe);
-        
     }
 
+    /* 
+     * This Method is called when the user selects his/her choice to attend lecture
+     */
     @Override
     public void attendLecture() {
-        System.out.print("Lecture Attended: ");
-        if(TourEnums.CS542 == lecture){
-            System.out.print("CS542 IN-CLASS LECTURE\n");
-        }else if(TourEnums.CS540_VIDEOSTREAM == lecture){
-            System.out.print("CS540 VIDEOSTREAMED LECTURE\n");
+        double trialCost = 5.5;
+        AttendLectureI attendLectureI;
+        if(attendLecture == TourEnums.CS542){
+            attendLectureI = new LectureInClass();
+            attendLectureI.setCost(trialCost);
+            cost = attendLectureI.totalCost();
+            duration = attendLectureI.durationOfActivity();
+            co2 = attendLectureI.CarbonFootprintUsed();
+            efforts = attendLectureI.totalEfforts();
+            r.storeResult(cost, duration, co2, efforts);
+
+        }else if(attendLecture == TourEnums.CS540_VIDEOSTREAM){
+            trialCost = 5;
+            attendLectureI = new LectureVideoStream();
+            attendLectureI.setCost(trialCost);
+            cost = attendLectureI.totalCost();
+            duration = attendLectureI.durationOfActivity();
+            co2 = attendLectureI.CarbonFootprintUsed();
+            efforts = attendLectureI.totalEfforts();
+            r.storeResult(cost, duration, co2, efforts);
+
         }
 
-        AttendLecture attendL = new AttendLecture();
-        attendL.totalCost(lecture);
-        attendL.durationOfActivity(lecture);
-        attendL.CarbonFootprintUsed(lecture);
-        attendL.totalEfforts(lecture);
-        
     }
 
-    @Override
-    public void setBuilding1(TourEnums buildingVal1) {
-
-        this.building1 = buildingVal1;
-    }
-//    @Override
-//    public void setBuilding2(TourEnums buildingVal1) {
-//
-//        this.building1 = buildingVal1;
-//    }
-
-
-    @Override
-    public void setGiftPlace(TourEnums giftPlaceVal) {
-       this.giftPlace = giftPlaceVal;
-        
+    /* 
+     * This method simply prints the campus tour schedule.
+     */
+    public void printResult(){
+        r.printResult();
     }
 
-    @Override
-    public void setCafe(TourEnums cafeVal) {
-        this.cafe = cafeVal;
-        
-    }
-
-    @Override
-    public void setLecture(TourEnums lectureVal) {
-        this.lecture = lectureVal;
-        
-    }
-
-    
 }
+
+

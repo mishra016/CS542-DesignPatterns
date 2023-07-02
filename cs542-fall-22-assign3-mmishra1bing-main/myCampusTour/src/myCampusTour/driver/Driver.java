@@ -1,11 +1,11 @@
 package myCampusTour.driver;
 
+
 import myCampusTour.builderWorkshop.BuilderWorkshop;
 import myCampusTour.builderWorkshop.BuilderWorkshopI;
 import myCampusTour.builderWorkshop.Tour;
 import myCampusTour.builderWorkshop.TourBuilder;
 import myCampusTour.myTour.TourEnums;
-import myCampusTour.util.Results;
 
 /**
  * @author placeholder
@@ -26,18 +26,19 @@ public class Driver {
 
 			System.err.println("Error: Incorrect number of arguments. Program accepts 2 argumnets.");
 			System.exit(0);
-		}
+		}else{
 
-		Results rp = new Results();
 		System.out.println("-------------First CampusTour---------------");
-		TourBuilder myTour = new Tour(TourEnums.SOM_FOOT,TourEnums.UNIVERSITYUNION, TourEnums.CS540_VIDEOSTREAM,TourEnums.CIW_QUEUE);
+		TourBuilder myTour = new Tour(TourEnums.SOM_FOOT,TourEnums.WATSON_BUS,TourEnums.UNIVERSITYUNION,TourEnums.CIW_QUEUE, TourEnums.CS540_VIDEOSTREAM);
 		BuilderWorkshopI orientation = new BuilderWorkshop();
 		orientation.construct(myTour);
 
 		System.out.println("-------------Second CampusTour---------------");
-		TourBuilder myTour2 = new Tour(TourEnums.WATSON_BUS,TourEnums.UNIVERSITYUNION, TourEnums.CS542,TourEnums.MOUNTAINVIEW_ONLINEORDER);
+		TourBuilder myTour2 = new Tour(TourEnums.WATSON_FOOT, TourEnums.SOM_BUS ,TourEnums.EVENTCENTER, TourEnums.MOUNTAINVIEW_ONLINEORDER, TourEnums.CS542);
 		BuilderWorkshopI orientation2 = new BuilderWorkshop();
 		orientation2.construct(myTour2);
+
+		}
 
 	}
 }

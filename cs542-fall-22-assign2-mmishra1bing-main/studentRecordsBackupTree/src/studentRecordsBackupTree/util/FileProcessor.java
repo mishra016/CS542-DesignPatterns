@@ -1,17 +1,15 @@
 package studentRecordsBackupTree.util;
 import studentRecordsBackupTree.bst.BST;
-
 import java.io.File;
-import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class FileProcessor {
-    private static String errorLog;
-    private String input;
 
+    private String input;
     private static String output;
+    private static String errorLog;
 
     public String getInput() {
         return input;
@@ -37,8 +35,6 @@ public class FileProcessor {
         this.errorLog = errorLog;
     }
 
-
-
     public FileProcessor(String pathToInput, String pathToOutput, String pathToError){
         this.input = pathToInput;
         this.output=pathToOutput;
@@ -53,13 +49,13 @@ public class FileProcessor {
             try {
                 sc = new Scanner(inputFile);
                 while (sc.hasNextLine()) {
-                    String inputContent = sc.nextLine();
-                    int integerInput = Integer.parseInt(inputContent);
-                    mainTree.insert(integerInput);
-                    backup1.insert(integerInput);
-                    backup2.insert(integerInput);
-                }
+                      String inputContent = sc.nextLine();
+                      int integerInput = Integer.parseInt(inputContent);
+                      mainTree.insert(integerInput);
+                      backup1.insert(integerInput);
+                      backup2.insert(integerInput);
 
+                }
             } catch (FileNotFoundException e) {
                 Results r = new Results();
                 r.writeToErrorLog("File not Found");

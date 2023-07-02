@@ -1,23 +1,24 @@
 package studentRecordsBackupTree.bst;
 import studentRecordsBackupTree.ObserverPattern.SubjectInterface;
 import studentRecordsBackupTree.ObserverPattern.ObserverInterface;
-
 import java.util.ArrayList;
 
-public class Node implements SubjectInterface, ObserverInterface {
+
+public class Node implements SubjectInterface, ObserverInterface{
 
     private int bNumber;
+    private String description;
     private Node left;
     private Node right;
-
     private ArrayList<Node>BNum;
 
-
+    
     public Node(int bNumber){
-        this.bNumber=bNumber;
+        this.bNumber = bNumber;
+        this.description = "The description of B-number is: "+ this.bNumber;
         this.left = null;
         this.right = null;
-       this.BNum= new ArrayList<>();
+        this.BNum= new ArrayList<>();
     }
 
 
@@ -27,6 +28,14 @@ public class Node implements SubjectInterface, ObserverInterface {
 
     public void setBNumber(int bNumber) {
         this.bNumber = bNumber;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Node getLeft(){
@@ -48,12 +57,12 @@ public class Node implements SubjectInterface, ObserverInterface {
         return right;
     }
 
-    public ArrayList<Node> getBNum() {
-        return BNum;
-    }
-
     public void setBNum(ArrayList<Node> BNum) {
         this.BNum = BNum;
+    }
+
+    public ArrayList<Node> getBNum() {
+        return BNum;
     }
 
 
@@ -78,6 +87,5 @@ public class Node implements SubjectInterface, ObserverInterface {
     public void update(int value) {
         this.bNumber = this.bNumber+value;
     }
-
 
 }

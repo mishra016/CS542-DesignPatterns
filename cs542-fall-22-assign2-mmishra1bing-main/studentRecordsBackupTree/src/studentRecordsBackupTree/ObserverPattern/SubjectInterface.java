@@ -4,9 +4,7 @@ import studentRecordsBackupTree.bst.Node;
 
 public interface SubjectInterface {
 
-    public void registerObserver(Node observer);
-    public void unregisterObserver(Node observer);
-    public void notifyObserver();
-
-
+     void registerObserver(Node observer);
+     void unregisterObserver(Node observer);
+     void notifyObserver();
 }

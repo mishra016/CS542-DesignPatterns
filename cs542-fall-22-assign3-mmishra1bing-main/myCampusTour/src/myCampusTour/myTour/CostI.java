@@ -1,5 +1,5 @@
 package myCampusTour.myTour;
 
 public interface CostI {
-    void totalCost(TourEnums activity);
+    double totalCost();
 }

@@ -3,7 +3,6 @@ package myCampusTour.myTour;
 public enum TourEnums {
     WATSON_BUS,
     SOM_BUS,
-    //Taken one extra building to include
     HARPUR_BUS,
     EVENTCENTER,
     UNIVERSITYUNION,
