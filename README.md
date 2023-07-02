@@ -17,5 +17,5 @@ Description:
 The project focuses on finding the K most frequent words using a HashMap data structure. The implementation utilizes HashMap for storing key-value pairs and an iterator to efficiently iterate through the data structure. The design incorporates Programming to an Interface, Visitor Pattern, and Strategy Pattern. Sample outputs are generated based on specific choices, demonstrating the most frequent words and different strategies for handling case sensitivity.
 
 
-###Note:
+### Note:
 Goto individual folders to understand the complete project with the commands to run it.
